@@ -1,0 +1,10 @@
+cython
+numpy
+albumentations
+imagecorruptions
+mmcv==0.2.14
+matplotlib
+terminaltables
+six
+pycocotools
+pillow==6.2.2
