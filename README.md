@@ -2,11 +2,9 @@
 
 ![](demo/network.png)
 
-> **Align Deep Features for Oriented Object Detection**
-
-> Jiaming Han, Jian Ding, Jie Li, Gui-Song Xia.
-
-> arXiv preprint ([arXiv:2008.09397](https://arxiv.org/abs/2008.09397)).
+> **[Align Deep Features for Oriented Object Detection](https://arxiv.org/abs/2008.09397)**,            
+> Jiaming Han, Jian Ding, Jie Li, Gui-Song Xia,        
+> arXiv preprint ([arXiv:2008.09397](https://arxiv.org/abs/2008.09397))  
 
 The repo is based on [mmdetection](https://github.com/open-mmlab/mmdetection).
 
@@ -45,7 +43,7 @@ Please see [getting_started.md](docs/GETTING_STARTED.md) for the basic usage of 
 ```
 @article{han2020align
   title = {Align Deep Features for Oriented Object Detection},
-  author = {Han, Jiaming and Ding, Jian and Xia, Gui-Song},
+  author = {Han, Jiaming and Ding, Jian and Li, Jie and Xia, Gui-Song},
   journal = {arXiv preprint arXiv:2008.09397},
   year = {2020}
 }
