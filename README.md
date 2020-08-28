@@ -3,7 +3,9 @@
 ![](demo/network.png)
 
 > **Align Deep Features for Oriented Object Detection**
+
 > Jiaming Han, Jian Ding, Jie Li, Gui-Song Xia.
+
 > arXiv preprint ([arXiv:2008.09397](https://arxiv.org/abs/2008.09397)).
 
 The repo is based on [mmdetection](https://github.com/open-mmlab/mmdetection).
