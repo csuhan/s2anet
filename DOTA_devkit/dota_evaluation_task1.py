@@ -248,23 +248,11 @@ def voc_eval(detpath,
     return rec, prec, ap
 
 def main():
-
-    # ##TODO: wrap the code in the main
-    # detpath = r'/home/dingjian/Documents/Research/experiments/light_head_faster_rotbox_best_point/Task1_results_0.1_nms_epoch18/results/Task1_{:s}.txt'
-    # annopath = r'/home/dingjian/code/DOTA/DOTA/media/OrientlabelTxt-utf-8/{:s}.txt'# change the directory to the path of val/labelTxt, if you want to do evaluation on the valset
-    # imagesetfile = r'/home/dingjian/code/DOTA/DOTA/media/testset.txt'
-    # classnames = ['plane', 'baseball-diamond', 'bridge', 'ground-track-field', 'small-vehicle', 'large-vehicle', 'ship', 'tennis-court',
-    #             'basketball-court', 'storage-tank',  'soccer-ball-field', 'roundabout', 'harbor', 'swimming-pool', 'helicopter']
-
+    
     detpath = r'work_dirs/rroidet_r50_fpn_1x/result_merge/Task1_{:s}.txt'
     annopath = r'/project/jmhan/data/dota/test/OrientlabelTxt-utf-8/{:s}.txt' # change the directory to the path of val/labelTxt, if you want to do evaluation on the valset
     imagesetfile = r'/project/jmhan/data/dota/test/testset.txt'
     
-    # detpath = r'work_dirs/temp/result_merge/Task1_{:s}.txt'
-    # annopath = r'data/dota/val/new_labelTxt/{:s}.txt' # change the directory to the path of val/labelTxt, if you want to do evaluation on the valset
-    # imagesetfile = r'data/dota/val/valset.txt'
-
-
     # For DOTA-v1.5
     # classnames = ['plane', 'baseball-diamond', 'bridge', 'ground-track-field', 'small-vehicle', 'large-vehicle', 'ship', 'tennis-court',
     #             'basketball-court', 'storage-tank',  'soccer-ball-field', 'roundabout', 'harbor', 'swimming-pool', 'helicopter', 'container-crane']

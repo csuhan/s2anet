@@ -33,22 +33,24 @@ Examples:
 
 Assume that you have already downloaded the checkpoints to `work_dirs/s2anet_r50_fpn_1x/`.
 
-1. Test S2ANet.
+1. Test S<sup>2</sup>A-Net.
 
 ```shell
 python tools/test.py configs/dota/s2anet_r50_fpn_1x.py \
     work_dirs/s2anet_r50_fpn_1x/epoch_12.pth \ 
-    --out work_dirs/ s2anet_r50_fpn_1x/res.pkl
+    --out work_dirs/s2anet_r50_fpn_1x/res.pkl
 ```
 
 
-3. Test S2ANet with 4 GPUs.
+2. Test S<sup>2</sup>A-Net with 4 GPUs.
 
 ```shell
 ./tools/dist_test.sh configs/dota/s2anet_r50_fpn_1x.py \
     work_dirs/s2anet_r50_fpn_1x/epoch_12.pth 4 \ 
-    --out work_dirs/ s2anet_r50_fpn_1x/res.pkl
+    --out work_dirs/s2anet_r50_fpn_1x/res.pkl
 ```
+
+*If you want to evaluate the result on DOTA test-dev, zip the files in ```work_dirs/s2anet_r50_fpn_1x/result_merge``` and submit it to the  [evaluation server](https://captain-whu.github.io/DOTA/index.html).
 
 ## Inference
 To inference multiple images in a folder, you can run:
@@ -119,7 +121,6 @@ Usually it is slow if you do not have high speed networking like infiniband.
 
 You can plot loss/mAP curves given a training log file. Run `pip install seaborn` first to install the dependency.
 
-![loss curve image](../demo/loss_curve.png)
 
 ```shell
 python tools/analyze_logs.py plot_curve [--keys ${KEYS}] [--title ${TITLE}] [--legend ${LEGEND}] [--backend ${BACKEND}] [--style ${STYLE}] [--out ${OUT_FILE}]

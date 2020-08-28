@@ -237,10 +237,6 @@ def main():
     annopath = r'data/dota/test/hbb_label_txt/{:s}.txt'# change the directory to the path of val/labelTxt, if you want to do evaluation on the valset
     imagesetfile = r'data/dota/test/testset.txt'
 
-    # detpath = r'work_dirs/temp/result_task2/Task2_{:s}.txt'
-    # annopath = r'data/dota/val/valset_reclabelTxt/{:s}.txt'# change the directory to the path of val/labelTxt, if you want to do evaluation on the valset
-    # imagesetfile = r'data/dota/val/valset.txt'
-
     classnames = ['plane', 'baseball-diamond', 'bridge', 'ground-track-field', 'small-vehicle', 'large-vehicle', 'ship', 'tennis-court',
                 'basketball-court', 'storage-tank',  'soccer-ball-field', 'roundabout', 'harbor', 'swimming-pool', 'helicopter']
     classaps = []

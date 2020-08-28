@@ -497,7 +497,7 @@ class S2ANetHead(nn.Module):
             num_total_samples=num_total_samples,
             cfg=cfg.fam_cfg)
 
-        # Object Detection Module targets
+        # Oriented Detection Module targets
         refine_anchors_list, valid_flag_list = self.get_refine_anchors(
             featmap_sizes, refine_anchors, img_metas, device=device)
 

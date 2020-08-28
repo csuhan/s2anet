@@ -15,7 +15,6 @@ PY_ARGS=${PY_ARGS:-""}
 
 
 srun -p ${PARTITION} \
-    -A gsxia \
     --job-name=${JOB_NAME} \
     --gres=gpu:${GPUS_PER_NODE} \
     --ntasks=${GPUS} \

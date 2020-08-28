@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-#SBATCH -A gsxia
 #SBATCH -p gpu
 #SBATCH --ntasks=4
 #SBATCH --ntasks-per-node=4
