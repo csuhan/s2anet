@@ -52,7 +52,7 @@ python tools/test.py configs/dota/s2anet_r50_fpn_1x.py \
 
 *If you want to evaluate the result on DOTA test-dev, zip the files in ```work_dirs/s2anet_r50_fpn_1x/result_merge``` and submit it to the  [evaluation server](https://captain-whu.github.io/DOTA/index.html).
 
-To evaluate on the val/test set, please refer to [DOTA_devkit/dota_evaluation_task1.py](DOTA_devkit/dota_evaluation_task1.py) and [DOTA_devkit/hrsc2016_evaluation.py](DOTA_devkit/hrsc2016_evaluation.py).
+To evaluate on the val/test set, please refer to [DOTA_devkit/dota_evaluation_task1.py](https://github.com/csuhan/s2anet/blob/master/DOTA_devkit/dota_evaluation_task1.py) and [DOTA_devkit/hrsc2016_evaluation.py](https://github.com/csuhan/s2anet/blob/master/DOTA_devkit/hrsc2016_evaluation.py).
 
 ## Inference
 To inference multiple images in a folder, you can run:

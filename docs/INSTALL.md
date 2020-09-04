@@ -68,9 +68,9 @@ python setup.py build_ext --inplace
 
 ### Prepare datasets
 
-For DOTA, we provide scripts to split the original images into chip images (e.g., 1024*1024). Please refer to [DOTA_devkit/prepare_dota1_ms.py](DOTA_devkit/prepare_dota1_ms.py).
+For DOTA, we provide scripts to split the original images into chip images (e.g., 1024*1024). Please refer to [DOTA_devkit/prepare_dota1_ms.py](https://github.com/csuhan/s2anet/blob/master/DOTA_devkit/prepare_dota1_ms.py).
 
-For HRSC2016, please refer to [DOTA_devkit/prepare_hrsc2016.py](DOTA_devkit/prepare_hrsc2016.py).
+For HRSC2016, please refer to [DOTA_devkit/prepare_hrsc2016.py](https://github.com/csuhan/s2anet/blob/master/DOTA_devkit/prepare_hrsc2016.py).
 
 It is recommended to symlink the dataset root to `$MMDETECTION/data`.
 If your folder structure is different, you may need to change the corresponding paths in config files.
