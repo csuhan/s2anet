@@ -347,7 +347,7 @@ def poly2rbox_torch(polys):
     angles[edge1 > edge2] = angles1[edge1 > edge2]
     angles[edge1 <= edge2] = angles2[edge1 <= edge2]
 
-    angle = (angle + PI / 4) % PI - PI / 4
+    angles = (angles + PI / 4) % PI - PI / 4
 
     x_ctr = (pt1[..., 0] + pt3[..., 0]) / 2.0
     y_ctr = (pt1[..., 1] + pt3[..., 1]) / 2.0
@@ -452,23 +452,6 @@ def cal_line_length_torch(point1, point2):
     point1:[x,y]
     """
     return torch.sqrt(torch.pow(point1[0] - point2[0], 2) + torch.pow(point1[1] - point2[1], 2))
-
-
-def get_best_rbox(rboxes):
-    """
-    get uniform represetation of rbox with: x,y,w,h,a. ensure w>h after regression
-    """
-    rboxes_new = rboxes.clone()
-    # find indexes of w<h
-    inds = rboxes[:, 2] < rboxes[:, 3]
-
-    rboxes_new[inds, 2] = rboxes[inds, 3]
-    rboxes_new[inds, 3] = rboxes[inds, 2]
-    rboxes_new[inds, 4] = rboxes[inds, 4] + np.pi / 2.0
-    rboxes_new[rboxes_new[:, 4] > np.pi*3/4, 4] -= np.pi
-    rboxes_new[rboxes_new[:, 4] < -np.pi/4, 4] += np.pi
-
-    return rboxes_new
 
 
 def rbox2roi(bbox_list):
