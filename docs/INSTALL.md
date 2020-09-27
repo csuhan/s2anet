@@ -4,11 +4,13 @@
 
 - Linux (Windows is not officially supported)
 - Python 3.5+ (Python 2 is not supported)
-- PyTorch 1.1 or higher
+- PyTorch **1.3** or higher
 - CUDA 9.0 or higher
 - NCCL 2
-- GCC(G++) 4.9 or higher
-- [mmcv](https://github.com/open-mmlab/mmcv)=0.2.14
+- GCC(G++) **4.9** or higher
+- [mmcv](https://github.com/open-mmlab/mmcv)==**0.2.14**
+
+Note that some cuda extensions, e.g., ```box_iou_rotated``` and ```nms_rotated``` require pytorch>=1.3 and gcc>=4.9.
 
 We have tested the following versions of OS and softwares:
 
@@ -16,6 +18,7 @@ We have tested the following versions of OS and softwares:
 - CUDA: 10.0
 - NCCL: 2.1.15/2.2.13/2.3.7/2.4.2
 - GCC(G++): 4.9
+- pytorch: 1.3.1
 
 ### Install
 
