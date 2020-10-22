@@ -41,7 +41,7 @@ Please see [getting_started.md](docs/GETTING_STARTED.md) for the basic usage of 
 ## Citation
 
 ```
-@article{han2020align
+@article{han2020align,
   title = {Align Deep Features for Oriented Object Detection},
   author = {Han, Jiaming and Ding, Jian and Li, Jie and Xia, Gui-Song},
   journal = {arXiv preprint arXiv:2008.09397},
