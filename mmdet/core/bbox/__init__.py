@@ -9,7 +9,7 @@ from .transforms import (bbox2delta, bbox2result, bbox2roi, bbox_flip,
                          distance2bbox, roi2bbox)
 from .transforms_rbox import (delta2rbox, get_best_begin_point,
                               get_best_begin_point_single,
-                              get_best_begin_point_torch, get_best_rbox,
+                              get_best_begin_point_torch,
                               poly2rbox, poly2rbox_single, poly2rbox_torch,
                               rbox2delta, rbox2poly, rbox2poly_single,
                               rbox2poly_torch, rbox2rect, rbox2rect_torch,
@@ -31,5 +31,5 @@ __all__ = [
     'rbox2poly', 'poly2rbox', 'poly2rbox_torch', 'rbox2poly_torch',
     'rbox2rect', 'rbox2rect_torch', 'rect2rbox', 'get_best_begin_point_single',
     'get_best_begin_point', 'get_best_begin_point_torch', 'poly2rbox_single',
-    'rbox_overlaps', 'get_best_rbox', 'rbox2poly_single','roi2rbox','rbox2roi'
+    'rbox_overlaps', 'rbox2poly_single','roi2rbox','rbox2roi'
 ]
