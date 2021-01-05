@@ -29,7 +29,7 @@ The past decade has witnessed significant progress on detecting objects in aeria
 
 *Note that the mAP reported here is a little different from the original paper. All results are reported on DOTA-v1.0 *test-dev*.
 
-* **20200104 updated version**
+* **20210104 updated version**
 
 |Model                      |Data           |    Backbone     |    MS  |  Rotate | Lr schd  | box AP | Download|
 |:-------------:            |:-------------:| :-------------: | :-----:| :-----: | :-----:  | :----: | :---------------------------------------------------------------------------------------: |
