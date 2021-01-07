@@ -39,7 +39,7 @@ The past decade has witnessed significant progress on detecting objects in aeria
 |CS<sup>2</sup>A-Net-1s     |HRSC2016       |    R-50-FPN     |   -    |   ✓    |   4x     |  84.58 |    [cfg](configs/hrsc2016/cascade_s2anet_1s_r50_fpn_4x_hrsc2016.py) [model](https://drive.google.com/file/d/1Nu0Xa9DhsQfP5nUic1LVxI9013-xo1w_/view?usp=sharing) [log](https://drive.google.com/file/d/1F50yegKejAxQ9SQg9oxUkaVFmyZX5f0f/view?usp=sharing)        |
 |CS<sup>2</sup>A-Net-2s     |HRSC2016       |    R-50-FPN     |   -    |   ✓    |   3x     |  89.96 |    [cfg](configs/hrsc2016/cascade_s2anet_2s_r50_fpn_3x_hrsc2016.py) [model](https://drive.google.com/file/d/1Xa2rDg9-LHvfiRmpCY7Aoow61vIcqSQE/view?usp=sharing) [log](https://drive.google.com/file/d/1vH_VyCVvcoNDga63fU-13Fzkp-nBq95c/view?usp=sharing)        |
 |CS<sup>2</sup>A-Net-1s     |DOTA           |    R-50-FPN     |   -    |   -    |   1x     |  69.06 |    [cfg](configs/dota/cascade_s2anet_1s_r50_fpn_1x_dota.py) [model](https://drive.google.com/file/d/13S9dFMVmwQeaojB5mVa6Kw_I0UMAjkct/view?usp=sharing) [log](https://drive.google.com/file/d/1H4_IqNWjLUgyCYLe0xrBsuf3-JQNI8z0/view?usp=sharing)        |
-|CS<sup>2</sup>A-Net-2s     |DOTA           |    R-50-FPN     |   -    |   -    |   1x     |  - |    [cfg](#) [model](#) [log](#)        |
+|CS<sup>2</sup>A-Net-2s     |DOTA           |    R-50-FPN     |   -    |   -    |   1x     |  73.67 |    [cfg](configs/dota/cascade_s2anet_2s_r50_fpn_1x_dota.py) [model](https://drive.google.com/file/d/1OOHcMsBzV0OxOSCxhVLO8Vc2dmFKuCYq/view?usp=sharing) [log](https://drive.google.com/file/d/19Eos7bdTrA9VduPTH4AJDvn8SrrijTBU/view?usp=sharing)        |
 
 The performance of S<sup>2</sup>A-Net on the updated version is similar to the original version.
 
