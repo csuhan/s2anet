@@ -44,9 +44,9 @@ python tools/test.py configs/dota/s2anet_r50_fpn_1x.py \
 * Test S<sup>2</sup>A-Net on HRSC2016.
 
 ```shell
-python tools/test.py configs/dota/s2anet_r50_fpn_1x.py \
-    work_dirs/s2anet_r50_fpn_1x/epoch_12.pth \ 
-    --out work_dirs/s2anet_r50_fpn_1x/res.pkl \
+python tools/test.py configs/hrsc2016/s2anet_r50_fpn_3x_hrsc2016.py \
+    work_dirs/s2anet_r50_fpn_3x_hrsc2016/epoch_36.pth \ 
+    --out work_dirs/s2anet_r50_fpn_3x_hrsc2016/res.pkl \
     --data hrsc2016
 ```
 * Test S<sup>2</sup>A-Net with 4 GPUs.
