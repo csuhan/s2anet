@@ -37,7 +37,8 @@ class ApproxMaxIoUAssigner(MaxIoUAssigner):
                  min_pos_iou=.0,
                  gt_max_assign_all=True,
                  ignore_iof_thr=-1,
-                 ignore_wrt_candidates=True):
+                 ignore_wrt_candidates=True,
+                 iou_calculator=dict(type='BboxOverlaps2D')):
         self.pos_iou_thr = pos_iou_thr
         self.neg_iou_thr = neg_iou_thr
         self.min_pos_iou = min_pos_iou
