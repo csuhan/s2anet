@@ -159,5 +159,5 @@ class RandomRotate(object):
         if len(gt_bboxes) == 0:
             return None
         results['gt_bboxes'] = gt_bboxes
-        results['labels'] = labels
+        results['gt_labels'] = labels
         return results
