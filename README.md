@@ -4,7 +4,7 @@
 
 > **[Align Deep Features for Oriented Object Detection](https://arxiv.org/abs/2008.09397)**,            
 > Jiaming Han<sup>\*</sup>, Jian Ding<sup>\*</sup>, Jie Li, Gui-Song Xia<sup>†</sup>,        
-> arXiv preprint ([arXiv:2008.09397](https://arxiv.org/abs/2008.09397)) / TGRS in press.
+> arXiv preprint ([arXiv:2008.09397](https://arxiv.org/abs/2008.09397)) / TGRS ([IEEE Xplore](https://ieeexplore.ieee.org/document/9377550)).
 
 The repo is based on [mmdetection](https://github.com/open-mmlab/mmdetection).
 
@@ -15,6 +15,8 @@ The past decade has witnessed significant progress on detecting objects in aeria
 
 
 ## Changelog
+* **2021-03-13.** Our paper is available at [IEEE Xplore](https://ieeexplore.ieee.org/document/9377550).
+
 * **2021-02-06.** Accepted to IEEE Transactions on Geoscience and Remote Sensing (TGRS).
 
 * **2021-01-01.** **Big changes!** Following mmdetection v2, we made a lot of changes to our code. Our original code contains many unnecessary functions and inappropriate modifications. So we modified related codes, e.g, dataset preprocessing and loading, unified function names, iou calculator between OBBs, and evaluation. Besides, we also implement a **Cascade S<sup>2</sup>A-Net**. Compared with previous versions, the updated version is more straightforward and easy to understand. 
@@ -66,12 +68,13 @@ Please see [getting_started.md](docs/GETTING_STARTED.md) for the basic usage of 
 ## Citation
 
 ```
-@article{han2020align,
-  title = {Align Deep Features for Oriented Object Detection},
-  author = {Han, Jiaming and Ding, Jian and Li, Jie and Xia, Gui-Song},
-  journal = {arXiv preprint arXiv:2008.09397},
-  year = {2020}
-}
+@article{han2021align,  
+  author={J. {Han} and J. {Ding} and J. {Li} and G. -S. {Xia}},  
+  journal={IEEE Transactions on Geoscience and Remote Sensing},   
+  title={Align Deep Features for Oriented Object Detection},   
+  year={2021}, 
+  pages={1-11},  
+  doi={10.1109/TGRS.2021.3062048}}
 
 @inproceedings{xia2018dota,
   title={DOTA: A large-scale dataset for object detection in aerial images},
