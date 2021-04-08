@@ -12,6 +12,8 @@ from .roi_pool import RoIPool, roi_pool
 from .sigmoid_focal_loss import SigmoidFocalLoss, sigmoid_focal_loss
 from .ml_nms_rotated import ml_nms_rotated
 
+from .box_iou_rotated_diff import box_iou_rotated_differentiable
+
 __all__ = [
     'nms', 'soft_nms', 'RoIAlign', 'roi_align', 'RoIPool', 'roi_pool',
     'DeformConv', 'DeformConvPack', 'DeformRoIPooling', 'DeformRoIPoolingPack',
@@ -19,5 +21,5 @@ __all__ = [
     'ModulatedDeformConvPack', 'deform_conv', 'modulated_deform_conv',
     'deform_roi_pooling', 'SigmoidFocalLoss', 'sigmoid_focal_loss',
     'MaskedConv2d', 'ContextBlock',
-    'RoIAlignRotated', 'ml_nms_rotated', 'nms_rotated'
+    'RoIAlignRotated', 'ml_nms_rotated', 'nms_rotated', 'box_iou_rotated_differentiable'
 ]

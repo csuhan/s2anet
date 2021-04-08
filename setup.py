@@ -229,6 +229,10 @@ if __name__ == '__main__':
                          'src/cpu/ActiveRotatingFilter_cpu.cpp', 'src/cpu/RotationInvariantEncoding_cpu.cpp',
                          'src/cuda/ActiveRotatingFilter_cuda.cu', 'src/cuda/RotationInvariantEncoding_cuda.cu',
                          ]),
+            make_cuda_ext(
+                name='sort_vertices_cuda',
+                module='mmdet.ops.box_iou_rotated_diff',
+                sources=['src/sort_vert.cpp', 'src/sort_vert_kernel.cu',]),
         ],
         cmdclass={'build_ext': BuildExtension},
         zip_safe=False)

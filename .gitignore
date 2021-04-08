@@ -120,3 +120,6 @@ work_dirs/
 # Pytorch
 *.pth
 demo_results
+exps
+DOTA_devkit/polyiou/csrc/polyiou_wrap.cxx
+DOTA_devkit/polyiou/csrc/polyiou.py
