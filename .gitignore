@@ -123,4 +123,4 @@ demo_results
 exps
 DOTA_devkit/polyiou/csrc/polyiou_wrap.cxx
 DOTA_devkit/polyiou/csrc/polyiou.py
-mmdet/ops/rotated_iou_loss_bak
+*_bak
