@@ -2,8 +2,10 @@ from __future__ import division
 
 import torch
 import torch.nn as nn
+from mmdet.core import (AnchorGeneratorRotated, anchor_target,
+                        delta2bbox_rotated, force_fp32, multi_apply,
+                        multiclass_nms_rotated, images_to_levels, build_bbox_coder)
 
-from mmdet.core import AnchorGeneratorRotated, delta2bbox_rotated, multiclass_nms_rotated
 from ..anchor_heads import AnchorHead
 from ..registry import HEADS
 
@@ -22,7 +24,8 @@ class AnchorHeadRotated(AnchorHead):
                 AnchorGeneratorRotated(
                     anchor_base, self.anchor_scales, self.anchor_ratios, angles=anchor_angles))
 
-        self.num_anchors = len(self.anchor_ratios) * len(self.anchor_scales) * len(self.anchor_angles)
+        self.num_anchors = len(self.anchor_ratios) * \
+            len(self.anchor_scales) * len(self.anchor_angles)
 
         self._init_layers()
 
@@ -31,23 +34,96 @@ class AnchorHeadRotated(AnchorHead):
                                   self.num_anchors * self.cls_out_channels, 1)
         self.conv_reg = nn.Conv2d(self.in_channels, self.num_anchors * 5, 1)
 
-    def loss_single(self, cls_score, bbox_pred, labels, label_weights,
+    def loss_single(self, cls_score, bbox_pred, anchors, labels, label_weights,
                     bbox_targets, bbox_weights, num_total_samples, cfg):
         # classification loss
         labels = labels.reshape(-1)
         label_weights = label_weights.reshape(-1)
-        cls_score = cls_score.permute(0, 2, 3, 1).reshape(-1, self.cls_out_channels)
-        loss_cls = self.loss_cls(cls_score, labels, label_weights, avg_factor=num_total_samples)
+        cls_score = cls_score.permute(
+            0, 2, 3, 1).reshape(-1, self.cls_out_channels)
+        loss_cls = self.loss_cls(
+            cls_score, labels, label_weights, avg_factor=num_total_samples)
         # regression loss
         bbox_targets = bbox_targets.reshape(-1, 5)
         bbox_weights = bbox_weights.reshape(-1, 5)
         bbox_pred = bbox_pred.permute(0, 2, 3, 1).reshape(-1, 5)
+
+        reg_decoded_bbox = cfg.get('reg_decoded_bbox', False)
+        if reg_decoded_bbox:
+            # When the regression loss (e.g. `IouLoss`, `GIouLoss`)
+            # is applied directly on the decoded bounding boxes, it
+            # decodes the already encoded coordinates to absolute format.
+            bbox_coder_cfg = cfg.get('bbox_coder', '')
+            if bbox_coder_cfg == '':
+                bbox_coder_cfg = dict(type='DeltaXYWHBBoxCoder')
+            bbox_coder = build_bbox_coder(bbox_coder_cfg)
+            anchors = anchors.reshape(-1, 5)
+            bbox_pred = bbox_coder.decode(anchors, bbox_pred)
         loss_bbox = self.loss_bbox(
             bbox_pred,
             bbox_targets,
             bbox_weights,
             avg_factor=num_total_samples)
         return loss_cls, loss_bbox
+
+    @force_fp32(apply_to=('cls_scores', 'bbox_preds'))
+    def loss(self,
+             cls_scores,
+             bbox_preds,
+             gt_bboxes,
+             gt_labels,
+             img_metas,
+             cfg,
+             gt_bboxes_ignore=None):
+        featmap_sizes = [featmap.size()[-2:] for featmap in cls_scores]
+        assert len(featmap_sizes) == len(self.anchor_generators)
+
+        device = cls_scores[0].device
+
+        anchor_list, valid_flag_list = self.get_anchors(
+            featmap_sizes, img_metas, device=device)
+
+        # anchor number of multi levels
+        num_level_anchors = [anchors.size(0) for anchors in anchor_list[0]]
+        # concat all level anchors and flags to a single tensor
+        concat_anchor_list = []
+        for i in range(len(anchor_list)):
+            concat_anchor_list.append(torch.cat(anchor_list[i]))
+        all_anchor_list = images_to_levels(concat_anchor_list,
+                                           num_level_anchors)
+        
+        label_channels = self.cls_out_channels if self.use_sigmoid_cls else 1
+        cls_reg_targets = anchor_target(
+            anchor_list,
+            valid_flag_list,
+            gt_bboxes,
+            img_metas,
+            self.target_means,
+            self.target_stds,
+            cfg,
+            gt_bboxes_ignore_list=gt_bboxes_ignore,
+            gt_labels_list=gt_labels,
+            label_channels=label_channels,
+            sampling=self.sampling)
+        if cls_reg_targets is None:
+            return None
+        (labels_list, label_weights_list, bbox_targets_list, bbox_weights_list,
+         num_total_pos, num_total_neg) = cls_reg_targets
+        num_total_samples = (
+            num_total_pos + num_total_neg if self.sampling else num_total_pos)
+        
+        losses_cls, losses_bbox = multi_apply(
+            self.loss_single,
+            cls_scores,
+            bbox_preds,
+            all_anchor_list,
+            labels_list,
+            label_weights_list,
+            bbox_targets_list,
+            bbox_weights_list,
+            num_total_samples=num_total_samples,
+            cfg=cfg)
+        return dict(loss_cls=losses_cls, loss_bbox=losses_bbox)
 
     def get_bboxes_single(self,
                           cls_score_list,

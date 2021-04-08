@@ -107,6 +107,8 @@ def anchor_target_single(flat_anchors,
     if bbox_coder_cfg == '':
         bbox_coder_cfg = dict(type='DeltaXYWHBBoxCoder')
     bbox_coder = build_bbox_coder(bbox_coder_cfg)
+    # Set True to use IoULoss
+    reg_decoded_bbox = cfg.get('reg_decoded_bbox', False)
 
     inside_flags = anchor_inside_flags(flat_anchors, valid_flags,
                                        img_meta['img_shape'][:2],
@@ -136,8 +138,11 @@ def anchor_target_single(flat_anchors,
     pos_inds = sampling_result.pos_inds
     neg_inds = sampling_result.neg_inds
     if len(pos_inds) > 0:
-        pos_bbox_targets = bbox_coder.encode(sampling_result.pos_bboxes,
-                                             sampling_result.pos_gt_bboxes)
+        if not reg_decoded_bbox:
+            pos_bbox_targets = bbox_coder.encode(sampling_result.pos_bboxes,
+                                                sampling_result.pos_gt_bboxes)
+        else:
+            pos_bbox_targets = sampling_result.pos_gt_bboxes
         bbox_targets[pos_inds, :] = pos_bbox_targets.to(bbox_targets)
         bbox_weights[pos_inds, :] = 1.0
         if gt_labels is None:

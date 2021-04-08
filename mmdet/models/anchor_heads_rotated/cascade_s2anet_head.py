@@ -4,13 +4,14 @@ import numpy as np
 import torch
 import torch.nn as nn
 from mmcv.cnn import normal_init
+from mmdet.core import (AnchorGeneratorRotated, anchor_target,
+                        build_bbox_coder, delta2bbox_rotated, force_fp32,
+                        images_to_levels, multi_apply, multiclass_nms_rotated)
 
-from mmdet.core import (anchor_target, delta2bbox_rotated, AnchorGeneratorRotated,
-                        force_fp32, multi_apply, multiclass_nms_rotated)
+from ...ops import DeformConv
 from ..builder import build_loss
 from ..registry import HEADS
 from ..utils import ConvModule, bias_init_with_prob
-from ...ops import DeformConv
 
 
 @HEADS.register_module
@@ -72,7 +73,8 @@ class CascadeS2ANetHead(nn.Module):
 
     def _init_layers(self):
         if self.with_align:
-            self.align_conv = AlignConv(self.feat_channels, self.feat_channels, 3)
+            self.align_conv = AlignConv(
+                self.feat_channels, self.feat_channels, 3)
 
         self.relu = nn.ReLU(inplace=True)
         self.reg_convs = nn.ModuleList()
@@ -232,12 +234,12 @@ class CascadeS2ANetHead(nn.Module):
         return anchor_list, valid_flag_list
 
     @force_fp32(apply_to=(
-            'cls_scores',
-            'bbox_preds'))
+        'cls_scores',
+        'bbox_preds'))
     def loss(self,
              cls_scores,
              bbox_preds,
-             anchors_list,
+             anchor_list,
              valid_flag_list,
              gt_bboxes,
              gt_labels,
@@ -248,9 +250,18 @@ class CascadeS2ANetHead(nn.Module):
         assert len(featmap_sizes) == len(self.anchor_generators)
         device = cls_scores[0].device
 
+        # anchor number of multi levels
+        num_level_anchors = [anchors.size(0) for anchors in anchor_list[0]]
+        # concat all level anchors and flags to a single tensor
+        concat_anchor_list = []
+        for i in range(len(anchor_list)):
+            concat_anchor_list.append(torch.cat(anchor_list[i]))
+        all_anchor_list = images_to_levels(concat_anchor_list,
+                                           num_level_anchors)
+
         label_channels = self.cls_out_channels if self.use_sigmoid_cls else 1
         cls_reg_targets = anchor_target(
-            anchors_list,
+            anchor_list,
             valid_flag_list,
             gt_bboxes,
             img_metas,
@@ -273,6 +284,7 @@ class CascadeS2ANetHead(nn.Module):
             self.loss_single,
             cls_scores,
             bbox_preds,
+            all_anchor_list,
             labels_list,
             label_weights_list,
             bbox_targets_list,
@@ -285,6 +297,7 @@ class CascadeS2ANetHead(nn.Module):
     def loss_single(self,
                     cls_score,
                     bbox_pred,
+                    anchors,
                     labels,
                     label_weights,
                     bbox_targets,
@@ -303,6 +316,17 @@ class CascadeS2ANetHead(nn.Module):
         bbox_weights = bbox_weights.reshape(-1, 5)
         bbox_pred = bbox_pred.permute(0, 2, 3, 1).reshape(-1, 5)
 
+        reg_decoded_bbox = cfg.get('reg_decoded_bbox', False)
+        if reg_decoded_bbox:
+            # When the regression loss (e.g. `IouLoss`, `GIouLoss`)
+            # is applied directly on the decoded bounding boxes, it
+            # decodes the already encoded coordinates to absolute format.
+            bbox_coder_cfg = cfg.get('bbox_coder', '')
+            if bbox_coder_cfg == '':
+                bbox_coder_cfg = dict(type='DeltaXYWHBBoxCoder')
+            bbox_coder = build_bbox_coder(bbox_coder_cfg)
+            anchors = anchors.reshape(-1, 5)
+            bbox_pred = bbox_coder.decode(anchors, bbox_pred)
         loss_bbox = self.loss_bbox(
             bbox_pred,
             bbox_targets,
@@ -312,8 +336,8 @@ class CascadeS2ANetHead(nn.Module):
         return loss_cls, loss_bbox
 
     @force_fp32(apply_to=(
-            'cls_scores',
-            'bbox_preds'))
+        'cls_scores',
+        'bbox_preds'))
     def get_bboxes(self,
                    cls_scores,
                    bbox_preds,
@@ -453,7 +477,8 @@ class AlignConv(nn.Module):
         # so we stack them with y, x other than x, y
         offset = torch.stack([offset_y, offset_x], dim=-1)
         # NA,ks*ks*2
-        offset = offset.reshape(anchors.size(0), -1).permute(1, 0).reshape(-1, feat_h, feat_w)
+        offset = offset.reshape(anchors.size(
+            0), -1).permute(1, 0).reshape(-1, feat_h, feat_w)
         return offset
 
     def forward(self, x, anchors, stride):
