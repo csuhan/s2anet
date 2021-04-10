@@ -45,6 +45,7 @@ cd s2anet
 d. Install s2anet
 
 ```shell
+# optional
 pip install -r requirements.txt
 
 python setup.py develop

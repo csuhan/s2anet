@@ -32,7 +32,7 @@ The past decade has witnessed significant progress on detecting objects in aeria
 |S<sup>2</sup>A-Net         |    R-50-FPN     |   ✓     |  ✓     |   1x     |      16.0      |  79.42 |    [model](https://drive.google.com/file/d/1W-JPfoBPHdOxY6KqsD0ZhhLjqNBS7UUN/view?usp=sharing)    |
 |S<sup>2</sup>A-Net         |    R-101-FPN    |   ✓     |  ✓     |   1x     |      12.7      |  79.15 |    [model](https://drive.google.com/file/d/1Jkbx-WvKhokEOlWR7WLKxTpH4hDTp-Tb/view?usp=sharing)            |
 
-*Note that the mAP reported here is a little different from the original paper. All results are reported on DOTA-v1.0 *test-dev*. 
+*Note that the mAP reported here is a little different from the original paper. All results are reported on DOTA-v1.0 *test set*. 
 All checkpoints here are trained with the [Original version](https://github.com/csuhan/s2anet/tree/original_version), and **not compatible** with the updated version.
 
 * **20210104 updated version**
@@ -47,11 +47,15 @@ All checkpoints here are trained with the [Original version](https://github.com/
 |CS<sup>2</sup>A-Net-2s     |DOTA           |    R-50-FPN     |   -    |   -    |   1x     |  73.67 |    [cfg](configs/dota/cascade_s2anet_2s_r50_fpn_1x_dota.py) [model](https://drive.google.com/file/d/1OOHcMsBzV0OxOSCxhVLO8Vc2dmFKuCYq/view?usp=sharing) [log](https://drive.google.com/file/d/19Eos7bdTrA9VduPTH4AJDvn8SrrijTBU/view?usp=sharing)        |
 |S<sup>2</sup>A-Net         |DOTA           |    R-50-FPN     |   -    |   -    |   1x     |  74.04 |    [cfg](configs/dota/s2anet_r50_fpn_1x_dota.py) [model](https://drive.google.com/file/d/1OyKKhc1rgexf8otCex6XGiJIsb8fZBNQ/view?usp=sharing)    |
 
-CS<sup>2</sup>A-Net-*n*s indicates Cascade S<sup>2</sup>A-Net with *n* stages. For more information, please refer to [cascade_s2anet.md](docs/cascade_s2anet.md)
+**Note:**
 
-The checkpoints of S<sup>2</sup>A-Net are converted from the original version.
+1. All models are trained on **4** GPUs with a initial learning rate **0.01**. If you train the model with fewer/more GPUs, remember to change the lr, e.g., 0.01lr=0.0025lr\*4GPU, 0.0025lr=0.0025lr\*1GPU, 0.02lr=0.0025lr\*8GPU
 
-If you cannot get access to Google Drive, BaiduYun download link can be found [here](https://pan.baidu.com/s/1vsRDUD09RMC1hr9yU7Gviw) with extracting code **ABCD**.
+2. CS<sup>2</sup>A-Net-*n*s indicates Cascade S<sup>2</sup>A-Net with *n* stages. For more information, please refer to [CASCADE_S2ANET.md](docs/CASCADE_S2ANET.md)
+
+3. The checkpoints of S<sup>2</sup>A-Net are converted from the original version.
+
+4. If you cannot get access to Google Drive, BaiduYun download link can be found [here](https://pan.baidu.com/s/1vsRDUD09RMC1hr9yU7Gviw) with extracting code **ABCD**.
 
 
 ## Installation
