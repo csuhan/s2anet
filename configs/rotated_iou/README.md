@@ -4,7 +4,7 @@
 
 In general, IoU calculation for rotated boxes [1] is not differentiable as it requires [triangulation](https://en.wikipedia.org/wiki/Triangulation) to calculate the area of intesection polygons, like the [box_iou_rotated](mmdet/ops/box_iou_rotated) op.
 
-[2] proposes an IoU Loss for rotated 2D/3D objects, however, both implementation details and codes are provided.
+[2] proposes an IoU Loss for rotated 2D/3D objects, however, both implementation details and codes are not provided.
 [3] shows to calculate IoU between polygons in a pixel-wise manner.  
 
 Recently, we find two implementations for differantiable IoU calculation, [4] and [5].
