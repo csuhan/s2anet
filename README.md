@@ -15,6 +15,9 @@ The past decade has witnessed significant progress on detecting objects in aeria
 
 
 ## Changelog
+
+* **2021-04-10.** [Rotated IoU Loss](configs/rotated_iou/README.md) is added that further boosts the performance.
+
 * **2021-03-13.** Our paper is available at [IEEE Xplore](https://ieeexplore.ieee.org/document/9377550).
 
 * **2021-02-06.** Accepted to IEEE Transactions on Geoscience and Remote Sensing (TGRS).
@@ -46,6 +49,7 @@ All checkpoints here are trained with the [Original version](https://github.com/
 |CS<sup>2</sup>A-Net-1s     |DOTA           |    R-50-FPN     |   -    |   -    |   1x     |  69.06 |    [cfg](configs/dota/cascade_s2anet_1s_r50_fpn_1x_dota.py) [model](https://drive.google.com/file/d/13S9dFMVmwQeaojB5mVa6Kw_I0UMAjkct/view?usp=sharing) [log](https://drive.google.com/file/d/1H4_IqNWjLUgyCYLe0xrBsuf3-JQNI8z0/view?usp=sharing)        |
 |CS<sup>2</sup>A-Net-2s     |DOTA           |    R-50-FPN     |   -    |   -    |   1x     |  73.67 |    [cfg](configs/dota/cascade_s2anet_2s_r50_fpn_1x_dota.py) [model](https://drive.google.com/file/d/1OOHcMsBzV0OxOSCxhVLO8Vc2dmFKuCYq/view?usp=sharing) [log](https://drive.google.com/file/d/19Eos7bdTrA9VduPTH4AJDvn8SrrijTBU/view?usp=sharing)        |
 |S<sup>2</sup>A-Net         |DOTA           |    R-50-FPN     |   -    |   -    |   1x     |  74.04 |    [cfg](configs/dota/s2anet_r50_fpn_1x_dota.py) [model](https://drive.google.com/file/d/1OyKKhc1rgexf8otCex6XGiJIsb8fZBNQ/view?usp=sharing)    |
+|CS<sup>2</sup>A-Net-2s-IoU     |DOTA           |    R-50-FPN     |   -    |   -    |   1x     |  74.58 |    [cfg](configs/rotated_iou/cascade_s2anet_2s_r50_fpn_1x_dota_iouloss.py) [model](#) [log](#)  
 
 **Note:**
 
@@ -53,9 +57,11 @@ All checkpoints here are trained with the [Original version](https://github.com/
 
 2. CS<sup>2</sup>A-Net-*n*s indicates Cascade S<sup>2</sup>A-Net with *n* stages. For more information, please refer to [CASCADE_S2ANET.md](docs/CASCADE_S2ANET.md)
 
-3. The checkpoints of S<sup>2</sup>A-Net are converted from the original version.
+3. IoU means IoU Loss for bbox regression. 
 
-4. If you cannot get access to Google Drive, BaiduYun download link can be found [here](https://pan.baidu.com/s/1vsRDUD09RMC1hr9yU7Gviw) with extracting code **ABCD**.
+4. The checkpoints of S<sup>2</sup>A-Net are converted from the original version.
+
+5. If you cannot get access to Google Drive, BaiduYun download link can be found [here](https://pan.baidu.com/s/1vsRDUD09RMC1hr9yU7Gviw) with extracting code **ABCD**.
 
 
 ## Installation
