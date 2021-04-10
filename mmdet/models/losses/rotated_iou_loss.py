@@ -1,8 +1,7 @@
 import torch
 import torch.nn as nn
-from torch.nn.functional import linear
-
 from mmdet.ops import box_iou_rotated_differentiable
+
 from ..registry import LOSSES
 from .utils import weighted_loss
 

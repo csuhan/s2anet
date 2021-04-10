@@ -1,3 +1,7 @@
+"""
+Differentiable IoU calculation for rotated boxes
+Most of the code is adapted from https://github.com/lilanxiao/Rotated_IoU
+"""
 import torch
 from .box_intersection_2d import oriented_box_intersection_2d
 
