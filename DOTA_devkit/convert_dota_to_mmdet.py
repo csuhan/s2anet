@@ -36,7 +36,7 @@ def parse_ann_info(label_base_path, img_name):
     return bboxes, labels, bboxes_ignore, labels_ignore
 
 
-def convert_dota_to_mmdet(src_path, out_path, trainval=True, ext='.png'):
+def convert_dota_to_mmdet(src_path, out_path, trainval=True, filter_empty_gt=True, ext='.png'):
     """Generate .pkl format annotation that is consistent with mmdet.
     Args:
         src_path: dataset path containing images and labelTxt folders.
@@ -59,14 +59,17 @@ def convert_dota_to_mmdet(src_path, out_path, trainval=True, ext='.png'):
         if trainval:
             if not os.path.exists(label):
                 print('Label:' + img_name + '.txt' + ' Not Exist')
-            else:
-                bboxes, labels, bboxes_ignore, labels_ignore = parse_ann_info(label_path, img_name)
-                ann = {}
-                ann['bboxes'] = np.array(bboxes, dtype=np.float32)
-                ann['labels'] = np.array(labels, dtype=np.int64)
-                ann['bboxes_ignore'] = np.array(bboxes_ignore, dtype=np.float32)
-                ann['labels_ignore'] = np.array(labels_ignore, dtype=np.int64)
-                img_info['ann'] = ann
+                continue
+            # filter images without gt to speed up training
+            if filter_empty_gt & (osp.getsize(label) == 0):
+                continue
+            bboxes, labels, bboxes_ignore, labels_ignore = parse_ann_info(label_path, img_name)
+            ann = {}
+            ann['bboxes'] = np.array(bboxes, dtype=np.float32)
+            ann['labels'] = np.array(labels, dtype=np.int64)
+            ann['bboxes_ignore'] = np.array(bboxes_ignore, dtype=np.float32)
+            ann['labels_ignore'] = np.array(labels_ignore, dtype=np.int64)
+            img_info['ann'] = ann
         data_dict.append(img_info)
 
     mmcv.dump(data_dict, out_path)
