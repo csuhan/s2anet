@@ -1,6 +1,27 @@
 ## Installation
 
-### Requirements
+Here we provide two ways for installation
+* step-by-step
+* docker
+
+### Docker Installation
+
+a. Pull docker from dockerhub
+```
+docker pull csuhan/s2anet:latest
+```
+
+b. Run docker.
+```
+sudo docker run --gpus all -it -v your/path/to/dataset:/s2anet/data csuhan/s2anet:latest
+```
+
+**Note:**
+* Make sure you have installed docker, and GPUs are available in docker.
+
+### Step-by-step Installation
+
+#### Requirements
 
 - Linux
 - Python 3.5+ (Python 2 is not supported)
@@ -20,7 +41,7 @@ We have tested the following versions of OS and softwares:
 - GCC(G++): 4.9
 - pytorch: 1.3.1
 
-### Install
+#### Install
 
 a. Create a conda virtual environment and activate it.
 
@@ -52,7 +73,7 @@ python setup.py develop
 # or "pip install -v -e ."
 ```
 
-### Install DOTA_devkit
+#### Install DOTA_devkit
 ```
 sudo apt-get install swig
 cd DOTA_devkit/polyiou
