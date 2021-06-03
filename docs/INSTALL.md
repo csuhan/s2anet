@@ -1,8 +1,8 @@
 ## Installation
 
 Here we provide two ways for installation
-* step-by-step
 * docker
+* step-by-step
 
 ### Docker Installation
 
