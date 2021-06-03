@@ -16,6 +16,8 @@ The past decade has witnessed significant progress on detecting objects in aeria
 
 ## Changelog
 
+* **2021-06-03.** Docker support. See [install.md](docs/INSTALL.md).
+
 * **2021-04-29.** [Third-party implementation](https://github.com/PaddlePaddle/PaddleDetection/blob/release/2.0/configs/dota/README.md) with [PaddleDetection](https://github.com/PaddlePaddle/PaddleDetection).
 
 * **2021-04-10.** [Rotated IoU Loss](configs/rotated_iou/README.md) is added that further boosts the performance.
