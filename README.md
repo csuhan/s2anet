@@ -16,6 +16,8 @@ The past decade has witnessed significant progress on detecting objects in aeria
 
 ## Changelog
 
+* **2021-08-04.** [Another third-party implementation](https://github.com/Jittor/JDet/blob/master/projects/s2anet/README.md) with [Jittor](https://github.com/Jittor/jittor) and [JDet](https://github.com/Jittor/JDet).
+
 * **2021-06-03.** Docker support. See [install.md](docs/INSTALL.md).
 
 * **2021-04-29.** [Third-party implementation](https://github.com/PaddlePaddle/PaddleDetection/blob/release/2.0/configs/dota/README.md) with [PaddleDetection](https://github.com/PaddlePaddle/PaddleDetection).
