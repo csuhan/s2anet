@@ -53,7 +53,7 @@ conda activate s2anet
 b. Install PyTorch stable or nightly and torchvision following the [official instructions](https://pytorch.org/), e.g.,
 
 ```shell
-conda install pytorch=1.3 torchvision cudatoolkit=10.0 -c pytorch
+conda install pytorch torchvision cudatoolkit=11.1 -c pytorch -c nvidia
 ```
 
 c. Clone the s2anet repository.
