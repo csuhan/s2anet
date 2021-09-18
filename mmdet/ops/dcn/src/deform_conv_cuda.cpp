@@ -382,7 +382,7 @@ int deform_conv_backward_parameters_cuda(
   // todo: transpose and reshape outGrad
   // todo: reshape columns
   // todo: add im2col_step as input
-
+  
   shape_check(input, offset, &gradOutput, gradWeight, kH, kW, dH, dW, padH,
               padW, dilationH, dilationW, group, deformable_group);
   at::DeviceGuard guard(input.device());
@@ -430,7 +430,7 @@ int deform_conv_backward_parameters_cuda(
                              outputHeight, outputWidth});
   gradOutputBuffer.copy_(gradOutput);
   gradOutputBuffer =
-      gradOutputBuffer.view({batchSize / im2col_step, nOutputPlane,
+      gradOutputBuffer.reshape({batchSize / im2col_step, nOutputPlane,
                              im2col_step * outputHeight, outputWidth});
 
   gradOutput.transpose_(1, 2);
