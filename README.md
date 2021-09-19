@@ -15,6 +15,7 @@ The past decade has witnessed significant progress on detecting objects in aeria
 
 
 ## Changelog
+* **2021-09019.** [@khiemauto](https://github.com/khiemauto) updates S<sup>2</sup>A-Net with Pytorch1.9 support! See his [repo](https://github.com/csuhan/s2anet/pull/112) for more details.
 
 * **2021-08-04.** [Another third-party implementation](https://github.com/Jittor/JDet/blob/master/projects/s2anet/README.md) with [Jittor](https://github.com/Jittor/jittor) and [JDet](https://github.com/Jittor/JDet).
 
