@@ -65,6 +65,10 @@ To inference multiple images in a folder, you can run:
 ```
 python demo/demo_inference.py ${CONFIG_FILE} ${CHECKPOINT} ${IMG_DIR} ${OUTPUT_DIR}
 ```
+or without dataset
+```
+python demo/demo_inference_without_dataset.py ${CONFIG_FILE} ${CHECKPOINT} ${IMG_DIR} ${OUTPUT_DIR}
+```
 
 ## Train a model
 
